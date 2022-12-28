@@ -1,0 +1,31 @@
+/**
+ * Copyright (c) 2020 Raspberry Pi (Trading) Ltd.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "pico/stdlib.h"
+#include "hardware/pio.h"
+#include "hardware/clocks.h"
+#include "ws2812.pio.h"
+
+#include "WS2812.cpp"
+
+#define IS_RGBW true
+#define NUM_PIXELS 2
+
+#ifdef PICO_DEFAULT_WS2812_PIN
+#define WS2812_PIN PICO_DEFAULT_WS2812_PIN
+#else
+// default to pin 2 if the board doesn't have a default WS2812 pin defined
+#define WS2812_PIN 2
+#endif
+
+
+int main() {
+    ws2812 strip1(true, 2, 2);
+    strip1.setAll(250, 0, 250);
+}
